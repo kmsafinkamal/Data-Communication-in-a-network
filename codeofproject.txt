@@ -1,0 +1,83 @@
+ROUTER1:::::::: 
+enable
+config t
+interface fa1/0
+ip address 192.172.10.1 255.255.255.0
+no shut
+exit
+
+interface fa0/0
+ip address 192.172.20.1 255.255.255.0
+no shut
+exit
+
+
+ROUTER2:::::::: 
+enable
+config t
+interface fa0/0
+ip address 192.172.20.2 255.255.255.0
+no shut
+exit
+
+interface fa1/0
+ip address 192.172.40.1 255.255.255.0
+no shut
+exit
+
+interface fa6/0
+ip address 192.172.30.1 255.255.255.0
+no shut
+exit
+
+
+ROUTER3:::::::: 
+enable
+config t
+interface fa1/0
+ip address 192.172.50.1 255.255.255.0
+no shut
+exit
+
+interface fa0/0
+ip address 192.172.40.2 255.255.255.0
+no shut
+exit
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;EIGRP;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+ROUTER - 1:::::::::::::
+router eigrp 100
+network 192.172.10.0 0.0.0.255
+network 192.172.20.0 0.0.0.255
+exit
+
+
+ROUTER - 2:::::::::::::
+router eigrp 100
+network 192.172.20.0 0.0.0.255
+network 192.172.30.0 0.0.0.255
+network 192.172.40.0 0.0.0.255
+exit
+
+
+ROUTER - 3:::::::::::::
+router eigrp 100
+network 192.172.40.0 0.0.0.255
+network 192.172.50.0 0.0.0.255
+exit
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
